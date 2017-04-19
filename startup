@@ -25,8 +25,9 @@ fi
 # sanity check for only one startup script
 if [ -f "${COMPONENTS_DIRNAME}/startup" -a -f "${COMPONENTS_DIRNAME}/../startup" ]
 then
- printf "ERROR: You must choose where to put your 'startup' script.\n"
- printf "You can't have one in both '%s' and '%s'\n" "${COMPONENTS_DIRNAME}" "${COMPONENTS_DIRNAME}/.."
+ printf "ERROR: You must choose where to put your one and only 'startup' script.\n"
+ printf "You have one in both locations below:\n%s\n%s\n" "${COMPONENTS_DIRNAME}/startup" "${COMPONENTS_DIRNAME}/../startup"
+ exit 2
 fi
 
 if [ ! -d "${COMPONENTS_DIRNAME}" ]
@@ -43,12 +44,12 @@ component_scriptnames_ary=()
 SCRIPT_DATA=$(cd $COMPONENTS_DIRNAME; /bin/ls)
 while read -r line
 do
-# printf "script: $line\n" 1>&2
  if [ "$line" = "startup.order" ] ; then continue ; fi
  if [ "$line" = "startup" ] ; then continue ; fi
+ if [ -z "$line" ] ; then continue; fi
  component_scriptnames_ary+=("$line")
 done <<< "$SCRIPT_DATA"
-# printf "component_scriptname: %s\n" "${component_scriptnames_ary[@]}" 1>&2
+#printf "DEBUG: component_scriptname: %s\n" "${component_scriptnames_ary[@]}" 1>&2
 
 ##
 ## Initialize ordered components array
@@ -87,23 +88,27 @@ then
  done
 else
  component_order_ary=("${component_scriptnames_ary[@]}")
- printf "# WARNING: Component order is based on filenames.\n" 1>&2
- printf "# WARNING: Consider adding a startup.order file to control order of startup.\n" 1>&2
 fi
-# printf "DEBUG: component_order: %s\n" "${component_order_ary[@]}" 1>&2
+#printf "DEBUG: component_order: %s\n" "${component_order_ary[@]}" 1>&2
 
 # warn if no component scripts found
-if [ ${#component_order_ary[@]} -eq 0 ]
+if [ "${#component_order_ary[@]}" -eq 0 ]
 then
  printf "ERROR: There are no component scripts in ${COMPONENTS_DIRNAME}\n";
  exit 2
+fi
+
+if [ ! -f "${ORDER_FILE}" ]
+then
+ printf "# WARNING: Component order is based on filenames.\n" 1>&2
+ printf "# WARNING: Consider adding a startup.order file to control order of startup.\n" 1>&2
 fi
 
 ##
 ## Initialized selected components array
 ##
 selected_components_ary=()
-printf "DEBUG: arg:[%s]\n" $*
+# printf "DEBUG: arg:[%s]\n" $* 1>&2
 if [ "all" = "$1" ]
 then
  printf "# INFO: selecting all components\n"; 1>&2

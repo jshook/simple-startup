@@ -1,27 +1,27 @@
 #!/bin/bash
 result=0
+if [ -z "$*" ]
+then dirs="extra-scripts simple-example extra-ordering no-scripts extra-startup"
+else dirs="$@"
+fi
 
-for subdir in \
- extra-scripts \
- simple-example \
- extra-ordering \
- no-scripts \
- extra-startup
+for subdir in $dirs
 do
- pushd .
+ (
  cd $subdir
- printf "testing examples in $subdir: "
+ printf "testing examples in $subdir:\n"
  ./startup >actual.stdout 2>actual.stderr
  if cmp actual.stdout expected.stdout
- then printf "PASS\n"
- else printf "FAIL\n"
+ then printf ">> PASS\n"
+ else printf ">> FAIL\n"
   result=1
   printf "actual:\n"
   cat actual.stdout
   printf "expected:\n"
   cat expected.stdout
  fi
- popd
+ printf "\n"
+ )
 done
 
 exit $result

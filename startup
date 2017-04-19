@@ -146,7 +146,7 @@ do
  then
   FULL_SCRIPT_PATH="${COMPONENTS_DIRNAME}/${selected}"
   printf "INFO: executing: %s\n" "${selected}"
-  ( cd ${EXECUTIOND_DIR} && bash ${FULL_SCRIPT_PATH})
+  ( cd ${EXECUTION_DIR} && bash ${FULL_SCRIPT_PATH})
   last_status=$?
   if [[ last_status -ne 0 ]]
   then

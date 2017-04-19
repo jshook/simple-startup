@@ -116,7 +116,6 @@ while read -r line; do to_run_ary+=("$line"); done <<< "${TO_RUN}"
 order_ary=()
 while read -r line; do order_ary+=("$line"); done <<< "${COMPONENT_ORDER}"
 
-
 # execute components in order
 for selected in "${to_run_ary[@]}"
 do

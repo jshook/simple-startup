@@ -1,8 +1,22 @@
 #!/bin/bash
-for subdir in simple-example incomplete-ordering
+result=0
+
+for subdir in \
+ simple-example \
+ incomplete-ordering \
+ missing-scripts
 do
  pushd .
  cd $subdir
- ./startup all > startup.log 2>&1
+ printf "testing examples in $subdir: "
+ ./startup all >startup.stdout 2>startup.stderr
+ if cmp startup.log expected.output
+ then printf "PASS"
+ else printf "FAIL"
+  result=1
+ fi
+ printf "\n";
  popd
 done
+
+exit $result

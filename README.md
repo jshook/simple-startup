@@ -21,6 +21,15 @@ starting workbook...
 workbook started at 127.0.0.1:1345
 ~~~
 
+## Assumptions
+
+- This will be used on modern Linux variants, including RHEL and Debian distribution variants.
+- Standard scripting tools such as sed, awk, find, etc.. will be avilable. Any missing tools
+  that are needed but missing will be documented here for clarity.
+- This scripting format makes no attempt to protect the local system from the scripts being called.
+  It is imperative that you only run this tool with scripts that have an appropriate trust level,
+  i.e. Do not call unknown scripts on systems that you want to protect.
+
 ## Script Locations
 
 All of the components are supported by their own scripts, located in the .startup directory, 
@@ -34,6 +43,9 @@ component scripts would be in
 
 Alternately, the startup script itself may be in the .startup directory, if your wish is
 to move it out of the way of casual users.
+
+The current working directory will be set to the parent directory of the .startup component
+scripts directory before it is executed.
 
 ## Script Ordering
 

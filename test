@@ -5,12 +5,13 @@ for subdir in \
  extra-scripts \
  simple-example \
  extra-ordering \
- no-scripts
+ no-scripts \
+ extra-startup
 do
  pushd .
  cd $subdir
  printf "testing examples in $subdir: "
- ./startup all >actual.stdout 2>actual.stderr
+ ./startup >actual.stdout 2>actual.stderr
  if cmp actual.stdout expected.stdout
  then printf "PASS\n"
  else printf "FAIL\n"

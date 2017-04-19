@@ -42,7 +42,8 @@ component scripts would be in
 - /tmp/foodemo/.startup/workbook
 
 Alternately, the startup script itself may be in the .startup directory, if your wish is
-to move it out of the way of casual users.
+to move it out of the way of casual users. However, it is an explicit error to have both
+$PROJDIR/startup and $PROJDIR/.startup/startup.
 
 The current working directory will be set to the parent directory of the .startup component
 scripts directory before it is executed.

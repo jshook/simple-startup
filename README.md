@@ -70,9 +70,10 @@ then before scriptfoo is run, the current working directory will be set to $PROJ
 
 For integration purposes, the following environment variables will be set:
 
-- PROJDIR -- The project directory that holds the .startup subdirectory.
-- SELECTED_COMPONENTS -- A space-separate list of selected components in the order they were started up.
-- STARTUP_SCRIPTDIR -- The fully-qualified location of the .startup directory.
+- PROJECT_DIRECTORY - The project directory that holds the .startup subdirectory. 
+- SELECTED_COMPONENTS - A space-separated list of selected components in the order they were started up.
+- CURRENT_COMPONENT - The component name that is currently being started.
+- COMPONENT_SCRIPT - The absolute path of the script that is running the component.
 
 ## Component Script Conventions
 

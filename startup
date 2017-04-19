@@ -156,10 +156,10 @@ do
  then
   FULL_SCRIPT_PATH="${COMPONENTS_DIRNAME}/${selected}"
   printf "INFO: executing: %s\n" "${selected}"
-  export PROJDIR=
-  export SCRIPTDIR=
-  export SELECTED_COMPONENTS=
-  export PROJECT_COMPONENT="${selected}"
+  export PROJECT_DIRECTORY=$(dirname ${COMPONENTS_DIRNAME})
+  export SELECTED_COMPONENTS="${ordered_components_ary[@]}"
+  export CURRENT_COMPONENT="${selected}"
+  export COMPONENT_SCRIPT="${FULL_SCRIPT_PATH}"
 
   ( cd ${EXECUTION_DIR} && bash ${FULL_SCRIPT_PATH})
   last_status=$?

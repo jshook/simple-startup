@@ -33,7 +33,7 @@ fi
 
 # get list of components
 
-COMPONENT_NAMES=$(cd $COMPONENTS_DIRNAME; /usr/bin/ls)
+COMPONENT_NAMES=$(cd $COMPONENTS_DIRNAME; /usr/bin/ls | grep -v 'startup.order' | grep -v '^startup$')
 component_scriptnames_ary=()
 while read -r line; do component_scriptnames_ary+=("$line"); done <<< "${COMPONENT_NAMES}"
 
@@ -67,7 +67,12 @@ then
  # exist in the startup.order file
 
  component_order_ary=()
- while read -r line; do component_order_ary+=("$line"); done <<< "${COMPONENT_ORDER}"
+ while read -r line
+ do
+  if [ "$line" = "startup.order" ] ; then continue ; fi
+  if [ "$line" = "startup" ] ; then continue ; fi
+  component_order_ary+=("$line")
+ done <<< "${COMPONENT_ORDER}"
 
  for component_scriptname in "${component_scriptnames_ary[@]}"
  do

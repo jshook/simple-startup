@@ -46,7 +46,8 @@ to move it out of the way of casual users. However, it is an explicit error to h
 $PROJDIR/startup and $PROJDIR/.startup/startup.
 
 Apart from these files and the startup.order file described below, no other files are allowed
-in the .startup directory that are executable.
+in the .startup directory that are executable. You can side-load non-executable files in
+the .startup directory.
 
 ## Script Ordering
 
@@ -66,6 +67,12 @@ selects a subset fo components in a strange order.
 The current working directory will be set to the parent directory of the .startup component
 scripts directory before it is executed. For example, if you have $PROJDIR/.startup/scriptfoo,
 then before scriptfoo is run, the current working directory will be set to $PROJDIR.
+
+For integration purposes, the following environment variables will be set:
+
+- PROJDIR -- The project directory that holds the .startup subdirectory.
+- SELECTED_COMPONENTS -- A space-separate list of selected components in the order they were started up.
+- STARTUP_SCRIPTDIR -- The fully-qualified location of the .startup directory.
 
 ## Component Script Conventions
 

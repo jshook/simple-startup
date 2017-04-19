@@ -129,6 +129,15 @@ else
 fi
 # printf "DEBUG: selected_component: %s\n" "${selected_components_ary[@]}" 1>&2
 
+for selected in "${selected_components_ary[@]}"
+do
+ if ! containsElement "${selected}" "${component_order_ary[@]}"
+ then
+  printf "%s was specified, but no such component could be found.\n" "${selected}"
+  exit 2
+ fi
+done
+
 ordered_components_ary=()
 for component in "${component_order_ary[@]}"
 do
@@ -147,6 +156,11 @@ do
  then
   FULL_SCRIPT_PATH="${COMPONENTS_DIRNAME}/${selected}"
   printf "INFO: executing: %s\n" "${selected}"
+  export PROJDIR=
+  export SCRIPTDIR=
+  export SELECTED_COMPONENTS=
+  export PROJECT_COMPONENT="${selected}"
+
   ( cd ${EXECUTION_DIR} && bash ${FULL_SCRIPT_PATH})
   last_status=$?
   if [[ last_status -ne 0 ]]

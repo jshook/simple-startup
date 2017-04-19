@@ -2,20 +2,24 @@
 result=0
 
 for subdir in \
+ extra-scripts \
  simple-example \
- incomplete-ordering \
- missing-scripts
+ extra-ordering \
+ no-scripts
 do
  pushd .
  cd $subdir
  printf "testing examples in $subdir: "
- ./startup all >startup.stdout 2>startup.stderr
- if cmp startup.log expected.output
- then printf "PASS"
- else printf "FAIL"
+ ./startup all >actual.stdout 2>actual.stderr
+ if cmp actual.stdout expected.stdout
+ then printf "PASS\n"
+ else printf "FAIL\n"
   result=1
+  printf "actual:\n"
+  cat actual.stdout
+  printf "expected:\n"
+  cat expected.stdout
  fi
- printf "\n";
  popd
 done
 

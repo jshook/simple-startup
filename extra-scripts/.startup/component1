@@ -1,0 +1,2 @@
+#!/bin/bash
+printf "component1 started up\n"

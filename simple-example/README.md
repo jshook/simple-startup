@@ -1,1 +1,2 @@
-The remaining files in this directory are hidden.
+This directory is for testing.
+This test is just a simple example.

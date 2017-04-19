@@ -45,15 +45,27 @@ Alternately, the startup script itself may be in the .startup directory, if your
 to move it out of the way of casual users. However, it is an explicit error to have both
 $PROJDIR/startup and $PROJDIR/.startup/startup.
 
-The current working directory will be set to the parent directory of the .startup component
-scripts directory before it is executed.
+Apart from these files and the startup.order file described below, no other files are allowed
+in the .startup directory that are executable.
 
 ## Script Ordering
 
 By default, component scripts will execute in lexicographic order. If you want to impose
 a strict ordering, then create a file named startup.order in the .startup directory.
+
 If the .startup.order file exists, and there are files in the .startup directory that
 are not listed in it, then the startup script will provide an error and exit when it is run.
+Likewise, if you have a startup.order file, and it refers to file that do not exist,
+then an error will be thrown.
+
+In any case, the order in the startup.order file will be honored, even if the user
+selects a subset fo components in a strange order.
+
+## Script Execution
+
+The current working directory will be set to the parent directory of the .startup component
+scripts directory before it is executed. For example, if you have $PROJDIR/.startup/scriptfoo,
+then before scriptfoo is run, the current working directory will be set to $PROJDIR.
 
 ## Component Script Conventions
 

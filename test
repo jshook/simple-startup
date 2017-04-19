@@ -1,0 +1,8 @@
+#!/bin/bash
+for subdir in simple-example incomplete-ordering
+do
+ pushd .
+ cd $subdir
+ ./startup all > startup.log 2>&1
+ popd
+done

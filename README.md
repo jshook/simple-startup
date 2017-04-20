@@ -20,35 +20,22 @@ workbook
 ~~~
 [mock-example]$ ./startup all
 # INFO: selecting all components
-INFO: executing: app
+# INFO: executing: app
 app started up
-INFO: executing: datafeed
+# INFO: executing: datafeed
 datafeed started up
-INFO: executing: workbook
+# INFO: executing: workbook
 workbook started up at http://localhost:3023/testing/
 ~~~
 
 ~~~
 [mock-example]$ ./startup app workbook
-# INFO: selecting specific components: 1=[app] app workbook
+# INFO: selecting specific components: app workbook
 # INFO: component 'datafeed' is being skipped
-INFO: executing: app
+# INFO: executing: app
 app started up
-INFO: executing: workbook
+# INFO: executing: workbook
 workbook started up at http://localhost:3023/testing/
-
-~~~
-
-~~~
-# ./startup
-You must provide a list of components that you want to start up.
-Available components: all app datafeed workbook
-
-# ./startup all
-starting app... started
-starting datafeeed... started
-starting workbook...
-workbook started at 127.0.0.1:1345
 ~~~
 
 ## Assumptions

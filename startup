@@ -119,7 +119,7 @@ then
  selected_components_ary=("${component_order_ary[@]}")
 elif [ ! -z "$1" ]
 then
- printf "# INFO: selecting specific components: 1=[$1] $*\n"; 1>&2
+ printf "# INFO: selecting specific components: $*\n"; 1>&2
  selected_components_ary=( "$@" )
  #do selected_components_ary+=("$line")
 else
@@ -155,7 +155,7 @@ do
  if containsElement "${selected}" "${component_order_ary[@]}"
  then
   FULL_SCRIPT_PATH="${COMPONENTS_DIRNAME}/${selected}"
-  printf "INFO: executing: %s\n" "${selected}"
+  printf "# INFO: executing: %s\n" "${selected}"
   export PROJECT_DIRECTORY=$(dirname ${COMPONENTS_DIRNAME})
   export SELECTED_COMPONENTS="${ordered_components_ary[@]}"
   export CURRENT_COMPONENT="${selected}"

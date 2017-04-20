@@ -11,7 +11,7 @@ of demo scripts and assets. It does the following:
 
 ~~~
 [mock-example]$ ./startup 
-INFO: You must select from the following available components:
+INFO: You must select from the following available components, or specify 'all':
 app
 datafeed
 workbook

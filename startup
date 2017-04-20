@@ -98,7 +98,7 @@ fi
 # warn if no component scripts found
 if [ "${#component_order_ary[@]}" -eq 0 ]
 then
- printf "ERROR: There are no component scripts in ${COMPONENTS_DIRNAME}\n";
+ printf "ERROR: There are no executable scripts in ${COMPONENTS_DIRNAME}\n";
  exit 2
 fi
 

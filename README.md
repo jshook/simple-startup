@@ -7,7 +7,37 @@ of demo scripts and assets. It does the following:
 2. Provides a simple way to start them up
 3. Identifies scripting conventions required to support discovery of components.
 
-## Usage Example
+## Usage Examples
+
+~~~
+[mock-example]$ ./startup 
+INFO: You must select from the following available components:
+app
+datafeed
+workbook
+~~~
+
+~~~
+[mock-example]$ ./startup all
+# INFO: selecting all components
+INFO: executing: app
+app started up
+INFO: executing: datafeed
+datafeed started up
+INFO: executing: workbook
+workbook started up at http://localhost:3023/testing/
+~~~
+
+~~~
+[mock-example]$ ./startup app workbook
+# INFO: selecting specific components: 1=[app] app workbook
+# INFO: component 'datafeed' is being skipped
+INFO: executing: app
+app started up
+INFO: executing: workbook
+workbook started up at http://localhost:3023/testing/
+
+~~~
 
 ~~~
 # ./startup

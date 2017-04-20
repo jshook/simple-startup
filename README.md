@@ -50,21 +50,30 @@ workbook started up at http://localhost:3023/testing/
 ## Script Locations
 
 All of the components are supported by their own scripts, located in the .startup directory, 
-relative to the startup script itself. For example, if you have some demo material in
-/tmp/foodemo, then your startup script would be at /tmp/foodemo/startup, and the supporing
-component scripts would be in
+relative to the startup script itself.
+
+For example, if you have a basic project in
+
+- /tmp/foodemo
+
+then your startup script would be at either, **but not both**, of 
+
+- /tmp/foodemo/startup
+- /tmp/foodemo/.startup/startup
+
+and the supporting component startup scripts would be in
 
 - /tmp/foodemo/.startup/app
 - /tmp/foodemo/.startup/datafeed
 - /tmp/foodemo/.startup/workbook
 
-Alternately, the startup script itself may be in the .startup directory, if your wish is
-to move it out of the way of casual users. However, it is an explicit error to have both
-$PROJDIR/startup and $PROJDIR/.startup/startup.
+and you would have an optional
 
-Apart from these files and the startup.order file described below, no other files are allowed
-in the .startup directory that are executable. You can side-load non-executable files in
-the .startup directory.
+- /tmp/foodemo/.startup/startup.order
+
+Apart from these files and the startup.order file described below, no other
+*executable* files are allowed in the .startup directory. You can side-load
+non-executable files in the .startup directory.
 
 ## Script Ordering
 
@@ -82,8 +91,8 @@ selects a subset fo components in a strange order.
 ## Script Execution
 
 The current working directory will be set to the parent directory of the .startup component
-scripts directory before it is executed. For example, if you have $PROJDIR/.startup/scriptfoo,
-then before scriptfoo is run, the current working directory will be set to $PROJDIR.
+scripts directory before it is executed. For example, if you have $PROJECT_DIRECTORY/.startup/scriptfoo,
+then before scriptfoo is run, the current working directory will be set to $PROJECT_DIRECTORY.
 
 For integration purposes, the following environment variables will be set:
 
@@ -98,6 +107,7 @@ These script conventions are fairly normative. For the purposes of uniform and r
 startup behavior, you should consider these as strict requirements for component scripts.
 
 - Each component script must be set to executable.
+- Each non-script file must **not** be set executable.
 - Each component script should be a bash script by default. A simple /bin/sh script is acceptable,
   but bash is presumed to be available on all systems that will use this format.
 - Each component script must run the component in the background and then exit while the component

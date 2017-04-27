@@ -1,0 +1,2 @@
+#!/bin/bash
+printf "running optional component2 script\n"

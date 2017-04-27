@@ -80,13 +80,27 @@ non-executable files in the .startup directory.
 By default, component scripts will execute in lexicographic order. If you want to impose
 a strict ordering, then create a file named startup.order in the .startup directory.
 
-If the .startup.order file exists, and there are files in the .startup directory that
-are not listed in it, then the startup script will provide an error and exit when it is run.
-Likewise, if you have a startup.order file, and it refers to file that do not exist,
-then an error will be thrown.
+If the .startup.order file exists, and there are executable files in the .startup
+directory that are not listed in it, then the startup script will provide an error
+and exit when it is run.  Likewise, if you have a startup.order file, and it
+refers to file that do not exist, then an error will be thrown.
 
 In any case, the order in the startup.order file will be honored, even if the user
 selects a subset fo components in a strange order.
+
+### Optional Scripts
+
+You may include scripts which can be run directly, but which will not be automatically
+included for 'all'. In order to do this, simply comment them out in the startup.order
+file like this:
+
+~~~
+script1
+#optional-script2
+~~~
+
+The optional scripts will be sanity checked along with the other scripts, but they
+will be excluded when 'all' scripts are run.
 
 ## Script Execution
 

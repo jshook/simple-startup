@@ -1,0 +1,1 @@
+ERROR: There is a startup.order file, but script 'component1' is not listed in it.

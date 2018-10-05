@@ -1,0 +1,4 @@
+ERROR: You must choose where to put your one and only 'startup' script.
+You have one in both locations below:
+/home/jshook/IdeaProjects/simple-startup/extra-startup/.startup/startup
+/home/jshook/IdeaProjects/simple-startup/extra-startup/.startup/../startup

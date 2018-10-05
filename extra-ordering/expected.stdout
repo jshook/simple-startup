@@ -1,0 +1,2 @@
+ERROR: component startup script '/home/jshook/IdeaProjects/simple-startup/extra-ordering/.startup/component3' is not executable or it is missing.
+ERROR: (it was referenced in the startup.order file in /home/jshook/IdeaProjects/simple-startup/extra-ordering/.startup )

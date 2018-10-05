@@ -1,0 +1,7 @@
+# WARNING: Component order is based on filenames.
+# WARNING: Consider adding a startup.order file to control order of startup.
+# INFO: You must select from the following available components, or specify 'all':
+component1
+component2
+# INFO: You may also select from the following managed components, but they are not included with 'all':
+component3

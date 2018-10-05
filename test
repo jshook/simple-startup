@@ -1,27 +1,49 @@
 #!/bin/bash
 result=0
 if [ -z "$*" ]
-then dirs="extra-scripts simple-example extra-ordering no-scripts extra-startup extra-files skip-optional"
+then dirs="extra-scripts simple-example extra-ordering no-scripts extra-startup extra-files skip-optional managed-scripts"
 else dirs="$@"
 fi
 
 for subdir in $dirs
-do
- (
- cd $subdir
- printf "testing examples in $subdir:\n"
- ./startup >actual.stdout 2>actual.stderr
- if cmp actual.stdout expected.stdout
- then printf ">> PASS\n"
- else printf ">> FAIL\n"
-  result=1
-  printf "actual:\n"
-  cat actual.stdout
-  printf "expected:\n"
-  cat expected.stdout
- fi
- printf "\n"
- )
+do (
+  cd $subdir
+  printf "testing examples in $subdir:\n"
+  ./startup >actual.stdout 2>actual.stderr
+  RESULT="PASS"
+  if [ ! -f expected.stdout -a ! -f expected.stderr ]
+  then
+    RESULT="FAIL: No expected files were found"
+  else
+    if [ -f expected.stdout ]
+    then
+      if ! cmp actual.stdout expected.stdout
+      then
+        RESULT="FAIL"
+        printf "=== ACTUAL STDOUT ===\n"
+        cat actual.stdout
+        printf "=== EXPECTED STDOUT ===\n"
+        cat expected.stdout
+      fi
+    fi
+    if [ -f expected.stderr ]
+    then
+      if ! cmp actual.stderr expected.stderr
+      then
+        RESULT="FAIL"
+        printf "=== ACTUAL STDERR ===\n"
+        cat actual.stderr
+        printf "=== EXPECTED STDERR ===\n"
+        cat expected.stderr
+      fi
+    fi
+  fi
+
+  if [ "${RESULT}" = "PASS" ]
+  then printf ">> PASS\n"
+  else printf ">> FAIL\n"
+  fi
+)
 done
 
 exit $result

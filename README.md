@@ -120,10 +120,12 @@ or directory which includes a set of managed scripts that provide default implem
 If there is a named script in `.startup/` which has the same name as one in
 `.startup/managed-scripts/`, then the on in `.startup/` takes precedence.
 
-If simple startup detects that the managed-scripts directory is a github repo, then
-it will attempt to update the repo prior to running any of the scripts from it prior
-to running any script in it.
+## Ad-Hoc Scripts
 
+Additional scripts may be kept below in other subdirectories besides managed-scripts, but
+the relative path of these commands must be used instead of a simple script name.
+Ad-hoc scripts may not be overridden, since the relative path means that they have
+their own unique namespace under `.startup/some-path-...`
 
 ## Script Execution
 

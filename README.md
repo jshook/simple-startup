@@ -102,6 +102,23 @@ script1
 The optional scripts will be sanity checked along with the other scripts, but they
 will be excluded when 'all' scripts are run.
 
+## Managed Scripts
+
+If you want to include a subdirectory called `.startup/managed-scripts/`, then any
+executable scripts in this directory will be available for execution. These will
+not be included in `./startup all`, unless they are explicitly included in the
+explicit startup order. If you tell startup to run them in combination with other
+scripts which *are* in the startup order, then these scripts are included only
+*after* the known order. Using these conventions, you may link in a remote repo
+or directory which includes a set of managed scripts that provide default implementations. 
+If there is a named script in `.startup/` which has the same name as one in
+`.startup/managed-scripts/`, then the on in `.startup/` takes precedence.
+
+If simple startup detects that the managed-scripts directory is a github repo, then
+it will attempt to update the repo prior to running any of the scripts from it,
+unless it has been updated within the last 24 hours. This behavior can be
+forced with `./startup --update-managed`.
+
 ## Script Execution
 
 The current working directory will be set to the parent directory of the .startup component

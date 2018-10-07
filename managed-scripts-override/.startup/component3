@@ -1,0 +1,2 @@
+#!/bin/bash
+printf "OVERRIDE component3 started up\n"

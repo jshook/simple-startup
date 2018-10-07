@@ -1,2 +1,3 @@
-# ERROR: component startup script '/home/jshook/IdeaProjects/simple-startup/extra-ordering/.startup/component3' is not executable or it is missing.
-# ERROR: (it was referenced in the startup.order file in /home/jshook/IdeaProjects/simple-startup/extra-ordering/.startup )
+# ERROR: component startup script 'component3' is not executable or it is missing.
+# ERROR: (it was referenced in the startup order at /home/jshook/IdeaProjects/simple-startup/extra-ordering/.startup/startup.order )
+# ERROR: (it was not found in either /home/jshook/IdeaProjects/simple-startup/extra-ordering/.startup or /home/jshook/IdeaProjects/simple-startup/extra-ordering/.startup/managed-scripts

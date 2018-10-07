@@ -1,7 +1,7 @@
 #!/bin/bash
 result=0
 if [ -z "$*" ]
-then dirs="extra-scripts simple-example extra-ordering no-scripts extra-startup extra-files skip-optional managed-scripts"
+then dirs="extra-scripts simple-example extra-ordering no-scripts extra-startup extra-files skip-optional managed-scripts managed-scripts-override"
 else dirs="$@"
 fi
 

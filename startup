@@ -125,7 +125,7 @@ else
   elif [ -x "${MANAGED_COMPONENTS_DIRNAME}/${line}" ]
   then COMPONENT_SCRIPT="${MANAGED_COMPONENTS_DIRNAME}/${line}"
   else
-    printf "# ERROR: component startup script '${line}' is not executable or it is missing.\n";
+    printf "# ERROR: component startup script '${line}' is not executable or it is missing. Use chmod +x <filename> to make executable\n";
     printf "# ERROR: (it was referenced in the startup order at ${COMPONENTS_DIRNAME}/startup.order )\n";
     printf "# ERROR: (it was not found in either ${COMPONENTS_DIRNAME} or ${MANAGED_COMPONENTS_DIRNAME}\n";
     exit 2
